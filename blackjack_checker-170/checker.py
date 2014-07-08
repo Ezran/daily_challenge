@@ -1,7 +1,6 @@
 from collections import defaultdict
 import re
 
-filename = 'input2'
 ranks = ['Ace','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Jack','Queen','King']
 cards = defaultdict(list)
 
@@ -60,14 +59,17 @@ def findWinner():
 
 #######
 
-f = open(filename,'r')
-for i,row in enumerate(f):
-	if i > 0:
-		hand = [x for x in re.split('[,:][ ]+',row) if x]
-		name = ''
-		for j,card in enumerate(hand):
- 			if j == 0:
-				name = card
-			else:
-				cards[name].append(getValue(card))
-findWinner()
+for ind in range(1,6):
+	cards = defaultdict(list)
+	f = open('input'+str(ind),'r')
+	for i,row in enumerate(f):
+		if i > 0:
+			hand = [x for x in re.split('[,:][ ]+',row) if x]
+			name = ''
+			for j,card in enumerate(hand):
+	 			if j == 0:
+					name = card
+				else:
+					cards[name].append(getValue(card))
+	print " ==== Test " + str(ind) + " ===="
+	findWinner()
